@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flooder/screens/StageSelectionScreen.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class _MainMenuState extends State<MainMenu> {
           OutlinedButton(
             onPressed: () {
               debugPrint('Ready to Play');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const StageSelection()));
             },
             child: const Text('Play'),
           ),
