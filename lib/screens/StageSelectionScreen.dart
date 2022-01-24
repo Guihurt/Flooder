@@ -8,7 +8,6 @@ class StageSelection extends StatefulWidget {
 }
 
 class _StageSelectionState extends State<StageSelection> {
-
   //TODO: Add responsiveness to page
 
   @override
@@ -24,31 +23,48 @@ class _StageSelectionState extends State<StageSelection> {
                 Navigator.pop(context);
               },
               child: const Text('Back')),
-          const Text("Stage Selector"),
+          const Text("Stage Selection"),
           Container(
             height: 50, //Should be responsive
             child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: List<Widget>.generate(
-                    8,
-                    (index) => OutlinedButton(
-                          onPressed: () {
-                            debugPrint('Pressed Stage #$index');
-                          },
-                          child: Text(index.toString()),
-                        ))),
+                children: List<Widget>.generate(3, (index) {
+                  String difficulty = "???";
+
+                  switch (index) {
+                    case 0:
+                      difficulty = "Easy";
+                      break;
+                    case 1:
+                      difficulty = "Medium";
+                      break;
+                    case 2:
+                      difficulty = "Hard";
+                      break;
+                    default:
+                      difficulty = "????";
+                      break;
+                  }
+
+                  return OutlinedButton(
+                      onPressed: () {
+                        debugPrint('Pressed Stage: $difficulty');
+                      },
+                      child: Text(difficulty));
+                })),
           ),
           Container(
               height: 300, //Should be responsive
               width: 300, //Should be responsive
               child: GridView.count(
-                crossAxisCount: 5,
-                children: List.generate(15, (index) { //TODO: Have this list generate based on puzzles files
+                crossAxisCount: 3,
+                children: List.generate(3, (index) {
+                  //TODO: Have this list generate based on puzzles files
                   return OutlinedButton(
                       onPressed: () {
                         debugPrint('Pressed Puzzle #$index');
                       },
-                      child: Text('Puzzle #$index'));
+                      child: Text('$index'));
                 }),
               )),
         ],
