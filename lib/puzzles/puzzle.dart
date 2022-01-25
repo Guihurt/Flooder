@@ -1,14 +1,14 @@
 class Puzzle {
   final int row;
   final int column;
-  final List<int> solution;
-  final List<int> start;
+  final List<dynamic> solution;
+  final List<dynamic> start;
 
   Puzzle(this.row, this.column, this.solution, this.start);
 
   Puzzle.fromJson(Map<String, dynamic> json)
       : row = json['row'],
-        column = json['column'],
+        column = json['col'],
         solution = json['solution'],
         start = json['start'];
 

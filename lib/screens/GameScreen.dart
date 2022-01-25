@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flooder/puzzles/puzzle.dart';
+import 'dart:convert';
 
 class GameScreen extends StatefulWidget {
-  const GameScreen({Key? key, required this.puzzle}) : super(key: key);
+  const GameScreen({Key? key, required this.puzzleString}) : super(key: key);
 
-   final String puzzle;
+   final String puzzleString;
 
   /*
   Game States:
@@ -34,8 +35,11 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   final bool loadingPuzzle = true;
   final bool isPuzzleSolved = false;
+  late final Puzzle puzzle;
 
   Widget _buildLoading() {
+    puzzle = Puzzle.fromJson(jsonDecode(widget.puzzleString));
+    debugPrint(puzzle.start[0].toString());
     return const Text("loading...");
   }
 

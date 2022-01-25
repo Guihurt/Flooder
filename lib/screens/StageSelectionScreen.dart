@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flooder/puzzles/puzzle.dart';
+import 'package:flooder/screens/GameScreen.dart';
 
 class StageSelection extends StatefulWidget {
   const StageSelection({Key? key}) : super(key: key);
@@ -60,9 +62,18 @@ class _StageSelectionState extends State<StageSelection> {
                 crossAxisCount: 3,
                 children: List.generate(3, (index) {
                   //TODO: Have this list generate based on puzzles files
+                  int puzzleFileNumber = index + 1;
+
                   return OutlinedButton(
                       onPressed: () {
-                        debugPrint('Pressed Puzzle #$index');
+                        DefaultAssetBundle.of(context)
+                            .loadString(
+                                'lib/puzzles/demo/easy/$puzzleFileNumber.json')
+                            .then((value) => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        GameScreen(puzzleString: value))));
                       },
                       child: Text('$index'));
                 }),
